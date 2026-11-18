@@ -1596,7 +1596,7 @@
         const x = player.x + Math.cos(angle) * spawnDist;
         const y = player.y + Math.sin(angle) * spawnDist;
 
-        const timeScale = 1 + elapsedTime / 140;
+        const timeScale = 1 + elapsedTime / 110;
         let type = forceType;
 
         if (!type) {
@@ -1684,7 +1684,7 @@
         const dist = Math.min(Math.max(width, height) * 0.45, 360);
         const bx = player.x + Math.cos(angle) * dist;
         const by = player.y + Math.sin(angle) * dist;
-        const bossHp = 2600;
+        const bossHp = 4000;
         boss = {
           type: 'boss',
           x: bx,
@@ -1999,8 +1999,8 @@
         }
 
         // Enemy Spawning
-        const maxEnemies = Math.min(130, 36 + Math.floor(elapsedTime * 0.55));
-        const spawnInterval = Math.max(0.18, 0.95 - elapsedTime * 0.0042);
+        const maxEnemies = Math.min(170, 44 + Math.floor(elapsedTime * 0.7));
+        const spawnInterval = Math.max(0.12, 0.8 - elapsedTime * 0.005);
         spawnTimer -= dt;
         if (spawnTimer <= 0 && enemies.length < maxEnemies) {
           const batch = elapsedTime > 120 ? 3 : elapsedTime > 55 ? 2 : 1;
@@ -2016,7 +2016,7 @@
           if (eliteTimer <= 0) {
             spawnEnemy('elite');
             showWaveBanner(tr().eliteSpawn);
-            eliteTimer = 52;
+            eliteTimer = 40;
           }
         }
 
@@ -2329,9 +2329,9 @@
                   playTone(340, 0.2, 'sawtooth', 0.06, 620);
                 } else {
                   // Radial bullet ring
-                  const count = e.enraged ? 14 : 10;
+                  const count = e.enraged ? 16 : 12;
                   const baseA = Math.atan2(dy, dx);
-                  const bSpd = e.enraged ? 255 : 215;
+                  const bSpd = e.enraged ? 285 : 240;
                   for (let k = 0; k < count; k++) {
                     const a = baseA + (k * Math.PI * 2) / count;
                     enemyBullets.push({
@@ -2340,14 +2340,14 @@
                       vx: Math.cos(a) * bSpd,
                       vy: Math.sin(a) * bSpd,
                       radius: 7,
-                      damage: 16,
+                      damage: 20,
                       life: 3.4
                     });
                   }
                   addParticles(e.x, e.y, '#fb7185', 14, 1.3);
                   playTone(260, 0.16, 'square', 0.06, 120);
                   e.nextPattern = 'charge';
-                  e.patternTimer = e.enraged ? 2.1 : 2.9;
+                  e.patternTimer = e.enraged ? 1.9 : 2.5;
                 }
               }
             } else if (e.aiState === 'telegraph') {

@@ -573,14 +573,18 @@
     }
 
     @media (max-width: 600px) {
-      /* Mobile HUD wraps to two rows and the build strip can wrap to several;
-         push the boss bar and wave banner below the strip (~145px). */
+      /* On phones the top HUD wraps to two rows (ends ~106px), so the build strip,
+         boss bar and wave banner all start below that row. */
+      #build-strip {
+        top: calc(116px + env(safe-area-inset-top, 0px));
+      }
+
       #boss-hud {
-        top: calc(152px + env(safe-area-inset-top, 0px));
+        top: calc(204px + env(safe-area-inset-top, 0px));
       }
 
       #wave-banner {
-        top: 214px;
+        top: 266px;
       }
 
       #upgrade-cards {
